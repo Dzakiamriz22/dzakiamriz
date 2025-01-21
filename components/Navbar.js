@@ -11,27 +11,30 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white p-4 fixed top-0 w-full z-10 shadow-md">
+    <nav className="bg-gray-900 text-white p-4 fixed top-0 w-full z-20 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
+        {/* Logo / Brand */}
         <div className="text-white text-2xl font-semibold tracking-wide">
           <Link href="/">Dzaki Amri Zaidaan</Link>
         </div>
 
-        <div className="space-x-6 hidden md:flex">
-          <Link href="#about" className="text-gray-300 hover:text-gray-100 transition-all duration-200">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8">
+          <Link href="#about" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             About
           </Link>
-          <Link href="#projects" className="text-gray-300 hover:text-gray-100 transition-all duration-200">
+          <Link href="#projects" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             Projects
           </Link>
-          <Link href="#contact" className="text-gray-300 hover:text-gray-100 transition-all duration-200">
+          <Link href="#contact" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             Contact
           </Link>
         </div>
 
+        {/* Mobile Menu Toggle Button */}
         <div className="md:hidden">
           <button 
-            className="text-gray-300 hover:text-gray-100 transition-all duration-200"
+            className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out"
             onClick={toggleMenu}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -41,15 +44,16 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 text-white p-4 space-y-4">
-          <Link href="#about" className="block text-gray-300 hover:text-gray-100 transition-all duration-200">
+        <div className="md:hidden bg-gray-900 text-white p-4 space-y-4 transform transition-all duration-300 ease-in-out">
+          <Link href="#about" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             About
           </Link>
-          <Link href="#projects" className="block text-gray-300 hover:text-gray-100 transition-all duration-200">
+          <Link href="#projects" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             Projects
           </Link>
-          <Link href="#contact" className="block text-gray-300 hover:text-gray-100 transition-all duration-200">
+          <Link href="#contact" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
             Contact
           </Link>
         </div>

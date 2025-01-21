@@ -6,28 +6,28 @@ const platforms = [
     href: 'https://wa.me/62895361078490',
     iconSrc: '/icons/whatsapp.svg',
     iconAlt: 'WhatsApp',
-    iconColor: 'green-500',
+    iconColor: 'gray-800',
   },
   {
     name: 'Email',
     href: 'mailto:dzakiamriz12@gmail.com',
     iconSrc: '/icons/email.svg',
     iconAlt: 'Email',
-    iconColor: 'blue-500',
+    iconColor: 'gray-800',
   },
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/dzakiamriz',
     iconSrc: '/icons/linkedin.svg',
     iconAlt: 'LinkedIn',
-    iconColor: 'blue-600',
+    iconColor: 'gray-800',
   },
   {
     name: 'Instagram',
     href: 'https://www.instagram.com/dzakiamriz_',
     iconSrc: '/icons/instagram.svg',
     iconAlt: 'Instagram',
-    iconColor: 'pink-500',
+    iconColor: 'gray-800',
   },
   {
     name: 'GitHub',
@@ -51,13 +51,17 @@ const Contact = () => {
           {platforms.map(({ name, href, iconSrc, iconAlt, iconColor }, index) => (
             <div key={index} className="flex flex-col items-center">
               <a href={href} target="_blank" rel="noopener noreferrer">
-                <button className={`flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gray-800 rounded-full hover:bg-${iconColor} transition-all duration-300 ease-in-out shadow-lg transform hover:scale-110`}>
+                <button
+                  className={`relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gray-800 rounded-full 
+                    border-2 border-${iconColor} hover:bg-${iconColor} transition-all duration-300 ease-in-out 
+                    shadow-xl transform hover:scale-110 hover:shadow-2xl`}
+                >
                   <Image
                     src={iconSrc}
                     alt={iconAlt}
                     width={28}
                     height={28}
-                    className="transition-all duration-300 ease-in-out"
+                    className={`transition-all duration-300 ease-in-out ${iconColor === 'gray-800' ? 'filter invert' : ''}`}
                   />
                 </button>
               </a>

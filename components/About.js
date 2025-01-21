@@ -23,7 +23,7 @@ const About = () => {
         </p>
 
         <div className="mt-12">
-          <h3 className="text-2xl font-semibold text-gray-200 mb-8">Tech Stack</h3>
+          <h3 className="text-2xl font-semibold text-gray-200 mb-8">Technologies I Work With</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
             {techStack.map((tech, index) => (
               <div key={index} className="flex flex-col items-center">
