@@ -59,6 +59,18 @@ const Projects = () => {
       link: 'https://github.com/Dzakiamriz22/EatWise',
       category: 'Android Application',
     },
+    {
+      title: 'Manuk | Makan Enak Yuk!',
+      description:
+        'A dynamic website that showcases a wide range of food recipes, allowing users to explore, discover, and try out diverse dishes from different cuisines.    ',
+      technologies: [
+        { src: '/tech-icons/react.svg', alt: 'React' },
+        { src: '/tech-icons/nodejs.svg', alt: 'Node.js' },
+        { src: '/tech-icons/sql.svg', alt: 'MySQL' },
+      ],
+      link: 'https://github.com/Dzakiamriz22/Manuk',
+      category: 'Website',
+    },
   ];
 
   const handleProjectClick = (link) => {

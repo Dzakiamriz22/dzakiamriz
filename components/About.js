@@ -8,6 +8,7 @@ const About = () => {
     { src: '/tech-icons/nextjs.svg', alt: 'Next.js' },
     { src: '/tech-icons/kotlin.svg', alt: 'Kotlin' },
     { src: '/tech-icons/python.svg', alt: 'Python' },
+    { src: '/tech-icons/nodejs.svg', alt: 'NodeJs' },
     { src: '/tech-icons/php.svg', alt: 'PHP' },
     { src: '/tech-icons/laravel.svg', alt: 'Laravel' },
     { src: '/tech-icons/sql.svg', alt: 'SQL' },
@@ -24,17 +25,17 @@ const About = () => {
 
         <div className="mt-12">
           <h3 className="text-2xl font-semibold text-gray-200 mb-8">Technologies I Work With</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
+          <div className="flex justify-center items-center flex-wrap gap-8">
             {techStack.map((tech, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div key={index} className="flex flex-col items-center group">
                 <Image
                   src={tech.src}
                   alt={tech.alt}
-                  width={60}
-                  height={60}
-                  className="tech-icon transition-all duration-300 ease-in-out transform hover:scale-105"
+                  width={80}
+                  height={80}
+                  className="tech-icon transition-all duration-300 ease-in-out transform group-hover:scale-110"
                 />
-                <p className="mt-2 text-sm text-gray-300">{tech.alt}</p>
+                <p className="mt-2 text-sm text-gray-300 group-hover:text-gray-100">{tech.alt}</p>
               </div>
             ))}
           </div>
