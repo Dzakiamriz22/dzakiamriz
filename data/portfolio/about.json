@@ -1,7 +1,7 @@
 {
-  "title": "About Me",
-  "intro": "I am a Computer Engineering graduate candidate with hands-on experience in product development, web engineering, and collaborative project delivery.",
-  "focus": "My focus is building web and backend systems that are maintainable, scalable, and aligned with real user needs.",
+  "title": "Professional Profile",
+  "intro": "I have hands-on experience in product development, web engineering, and collaborative project delivery.",
+  "focus": "My strengths are in problem-solving, backend workflow design, and turning requirements into clear, maintainable solutions.",
   "techStackTitle": "Core Technologies",
   "techStack": [
     { "src": "/tech-icons/php.svg", "alt": "PHP" },

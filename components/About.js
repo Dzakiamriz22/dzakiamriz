@@ -15,7 +15,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="mb-16">
-          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">ABOUT</p>
+          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">PROFILE</p>
           <h2 className="text-5xl md:text-6xl font-black tracking-tight">{about.title}</h2>
         </div>
 

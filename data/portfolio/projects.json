@@ -1,9 +1,9 @@
 [
   {
     "title": "Robusta Kendal Website",
-    "category": "Web Platform",
-    "description": "Developed backend services for product management and administrative features to keep operations smooth and consistent.",
-    "link": "",
+    "category": "Web Development",
+    "description": "Implemented backend services and admin workflows for product data and operational consistency.",
+    "link": "https://github.com/Dzakiamriz22/robustakendal",
     "technologies": [
       { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },
       { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
@@ -11,9 +11,9 @@
   },
   {
     "title": "Arsip DPPPA Kota Semarang",
-    "category": "Web Application",
-    "description": "Built a web-based document archive with CRUD workflows for faster, more organized file management.",
-    "link": "",
+    "category": "Web Development",
+    "description": "Developed a document archive system with structured CRUD workflows for faster and cleaner file handling.",
+    "link": "https://github.com/Dzakiamriz22/arsip-dpppa",
     "technologies": [
       { "src": "/tech-icons/laravel.svg", "alt": "Laravel" },
       { "src": "/tech-icons/php.svg", "alt": "PHP" },
@@ -21,17 +21,50 @@
     ]
   },
   {
+    "title": "Asuransiku",
+    "category": "Web Development",
+    "description": "Contributed to policy and claim workflow improvements in a Laravel-based insurance management platform.",
+    "link": "https://github.com/NajibPradana/Asuransiku",
+    "technologies": [
+      { "src": "/tech-icons/laravel.svg", "alt": "Laravel" },
+      { "src": "/tech-icons/php.svg", "alt": "PHP" },
+      { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
+    ]
+  },
+  {
+    "title": "Muslimku",
+    "category": "Web Development",
+    "description": "Built and deployed a responsive web interface with practical feature pages and profile-focused user flow.",
+    "link": "https://github.com/Dzakiamriz22/Muslimku",
+    "technologies": [
+      { "src": "/tech-icons/react.svg", "alt": "React" },
+      { "src": "/tech-icons/html.svg", "alt": "HTML" },
+      { "src": "/tech-icons/tailwindcss.svg", "alt": "Tailwind CSS" }
+    ]
+  },
+  {
+    "title": "TheAce 2024",
+    "category": "Web Development",
+    "description": "Contributed to a Next.js event platform, including UI updates and feature delivery in a collaborative team workflow.",
+    "link": "https://github.com/brilliahib/theace-2024",
+    "technologies": [
+      { "src": "/tech-icons/nextjs.svg", "alt": "Next.js" },
+      { "src": "/tech-icons/react.svg", "alt": "React" },
+      { "src": "/tech-icons/tailwindcss.svg", "alt": "Tailwind CSS" }
+    ]
+  },
+  {
     "title": "Glucosense",
     "category": "Machine Learning Project",
-    "description": "Developed machine learning models to predict diabetes risk and deliver practical, actionable health insights.",
-    "link": "",
+    "description": "Contributed to a diabetes risk analysis project with Python-based backend modeling and frontend integration.",
+    "link": "https://github.com/bagasramadhana99/Glucosense",
     "technologies": [{ "src": "/tech-icons/python.svg", "alt": "Python" }]
   },
   {
     "title": "PermataKu",
-    "category": "Web Platform",
-    "description": "Developed a platform to manage student data and tuition payments, streamlining educational administration.",
-    "link": "",
+    "category": "Web Development",
+    "description": "Built platform modules for student records and tuition tracking to simplify day-to-day academic operations.",
+    "link": "https://github.com/Dzakiamriz22/Manuk",
     "technologies": [
       { "src": "/tech-icons/react.svg", "alt": "React" },
       { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },

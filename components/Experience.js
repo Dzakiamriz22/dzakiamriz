@@ -25,20 +25,39 @@ const Experience = () => {
       .join("")
       .toUpperCase();
 
+  const allExpanded = openIndexes.length === experience.length;
+
+  const toggleAll = () => {
+    if (allExpanded) {
+      setOpenIndexes([]);
+      return;
+    }
+    setOpenIndexes(experience.map((_, index) => index));
+  };
+
   return (
     <section id="experience" className="py-20 bg-[var(--color-bg-secondary)] text-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
-        <div className="mb-16">
+        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+          <div>
           <p className="text-[var(--color-secondary)] font-black text-sm tracking-widest uppercase mb-2">WORK</p>
           <h2 className="text-5xl md:text-6xl font-black tracking-tight">Experience</h2>
+          </div>
+          <button
+            type="button"
+            onClick={toggleAll}
+            className="self-start border-2 border-[var(--color-primary)] px-4 py-2 text-xs uppercase font-black tracking-wide text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition"
+          >
+            {allExpanded ? 'Collapse All' : 'Expand All'}
+          </button>
         </div>
 
         <div className="space-y-8">
           {experience.map((exp, index) => (
             <div
               key={index}
-              className="border-2 border-[var(--color-border)] hover:border-[var(--color-primary)] transition"
+              className="border-2 border-[var(--color-border)] hover:border-[var(--color-primary)] transition brutal-card"
             >
               <div
                 className="flex justify-between items-center cursor-pointer p-8"
