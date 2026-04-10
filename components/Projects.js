@@ -1,81 +1,8 @@
-'use client';
-
 import Image from 'next/image';
+import portfolio from '@/data/portfolio';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: 'Instagram Rate Calculator',
-      description:
-        'This web app helps users calculate Instagram engagement rates by analyzing likes, comments, and followers. It helps businesses and influencers refine their social media strategies.',
-      technologies: [
-        { src: '/tech-icons/html.svg', alt: 'HTML' },
-        { src: '/tech-icons/tailwindcss.svg', alt: 'TailwindCSS' },
-        { src: '/tech-icons/python.svg', alt: 'Python Flask' },
-        { src: '/tech-icons/sqlite.svg', alt: 'SQLite' },
-      ],
-      link: 'https://github.com/Dzakiamriz22/Instagram-Engagement',
-      category: 'Website',
-    },
-    {
-      title: 'The Ace',
-      description:
-        'A dynamic platform offering detailed information and streamlined registration for the Anniversary competition held by the Department of Computer Engineering at Diponegoro University.',
-      technologies: [
-        { src: '/tech-icons/nextjs.svg', alt: 'Next.js' },
-        { src: '/tech-icons/tailwindcss.svg', alt: 'TailwindCSS' },
-      ],
-      link: 'https://theace-2024.vercel.app/',
-      category: 'Website',
-    },
-    {
-      title: 'Kejar Target',
-      description:
-        'A website designed to help students easily find and apply for scholarship opportunities, simplifying the search for financial support for their education.',
-      technologies: [
-        { src: '/tech-icons/html.svg', alt: 'HTML' },
-        { src: '/tech-icons/php.svg', alt: 'PHP' },
-        { src: '/tech-icons/sql.svg', alt: 'SQL' },
-      ],
-      link: 'https://github.com/Dzakiamriz22/Kejar-Target',
-      category: 'Website',
-    },
-    {
-      title: 'Muslimku',
-      description:
-        'This mobile app provides access to the Quran, prayers (Doa), and accurate prayer schedules, making it easier for Muslims to practice their faith on the go. It fetches data from a public API to ensure up-to-date information.',
-      technologies: [
-        { src: '/tech-icons/react.svg', alt: 'React PWA' },
-        { src: '/tech-icons/tailwindcss.svg', alt: 'TailwindCSS' },
-      ],
-      link: 'https://muslimku-one.vercel.app/',
-      category: 'Web Application',
-    },
-    {
-      title: 'EatWise',
-      description:
-        'EatWise is a mobile app designed to analyze food nutrition using machine learning models. It also includes a BMI calculator and offers personalized health tips, with an advanced API built by a specialized team.',
-      technologies: [{ src: '/tech-icons/kotlin.svg', alt: 'Kotlin' }],
-      link: 'https://github.com/Dzakiamriz22/EatWise',
-      category: 'Android Application',
-    },
-    {
-      title: 'Manuk | Makan Enak Yuk!',
-      description:
-        'A dynamic website that showcases a wide range of food recipes, allowing users to explore, discover, and try out diverse dishes from different cuisines.    ',
-      technologies: [
-        { src: '/tech-icons/react.svg', alt: 'React' },
-        { src: '/tech-icons/nodejs.svg', alt: 'Node.js' },
-        { src: '/tech-icons/sql.svg', alt: 'MySQL' },
-      ],
-      link: 'https://github.com/Dzakiamriz22/Manuk',
-      category: 'Website',
-    },
-  ];
-
-  const handleProjectClick = (link) => {
-    window.open(link, '_blank');
-  };
+  const { projects } = portfolio;
 
   return (
     <section id="projects" className="py-16 bg-gray-900 text-white">
@@ -117,13 +44,21 @@ const Projects = () => {
 
               {/* View Project Button */}
               <div className="flex justify-center">
-                <button
-                  onClick={() => handleProjectClick(project.link)}
-                  className="px-8 py-3 bg-indigo-600 text-white text-sm font-medium rounded-full transition-all duration-300 ease-in-out hover:bg-indigo-500"
-                  aria-label={`View details of ${project.title}`}
-                >
-                  View Project
-                </button>
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-3 bg-indigo-600 text-white text-sm font-medium rounded-full transition-all duration-300 ease-in-out hover:bg-indigo-500"
+                    aria-label={`View details of ${project.title}`}
+                  >
+                    View Project
+                  </a>
+                ) : (
+                  <span className="px-8 py-3 bg-gray-700 text-gray-300 text-sm font-medium rounded-full cursor-not-allowed">
+                    Private Project
+                  </span>
+                )}
               </div>
             </div>
           ))}

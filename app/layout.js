@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import portfolio from "@/data/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "My Portfolio",
-  description: "Portfolio of a Computer Engineering Student showcasing projects, skills, and more.",
+  title: portfolio.site.title,
+  description: portfolio.site.description,
 };
 
 export default function RootLayout({ children }) {
@@ -22,7 +23,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
-        <meta name="author" content="Your Name" />
+        <meta name="author" content={portfolio.personal.name} />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

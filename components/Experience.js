@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import portfolio from "@/data/portfolio";
 
 const Experience = () => {
+  const { experience } = portfolio;
   const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggleDropdown = (index) => {
@@ -14,33 +16,21 @@ const Experience = () => {
     );
   };
 
-  const experiences = [
-    {
-      title: "Bangkit Academy",
-      role: "Mobile Development Cohort",
-      duration: "Sep 2024 - Jan 2025 (5 months)",
-      location: "Remote",
-      description:
-        "Completed a comprehensive program led by Google, Tokopedia, Gojek, and Traveloka, specializing in mobile application development.",
-      logo: "/img/bangkit.jpg",
-    },
-    {
-      title: "Campus Data Media",
-      role: "Web Developer Internship",
-      duration: "Jun 2024 - Aug 2024 (3 months)",
-      location: "Semarang, Jawa Tengah, Indonesia",
-      description:
-        "Worked on developing responsive websites and web applications, enhancing user experience and implementing modern web technologies.",
-      logo: "/img/CDM.png",
-    },
-  ];
+  const getInitials = (text) =>
+    text
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
 
   return (
     <section id="experience" className="py-20 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12">Experience</h2>
         <div className="space-y-8">
-          {experiences.map((exp, index) => (
+          {experience.map((exp, index) => (
             <div
               key={index}
               className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
@@ -50,15 +40,21 @@ const Experience = () => {
                 onClick={() => toggleDropdown(index)}
               >
                 <div className="flex items-center space-x-6 sm:space-x-4">
-                  <Image
-                    src={exp.logo}
-                    alt={`${exp.title} Logo`}
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
+                  {exp.logo ? (
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 rounded-full bg-gray-700 border border-gray-600 flex items-center justify-center text-xl font-bold text-gray-200">
+                      {getInitials(exp.company)}
+                    </div>
+                  )}
                   <div>
-                    <h3 className="text-2xl font-semibold">{exp.title}</h3>
+                    <h3 className="text-2xl font-semibold">{exp.company}</h3>
                     <p className="text-sm text-gray-400">{exp.role}</p>
                   </div>
                 </div>
@@ -78,9 +74,13 @@ const Experience = () => {
               {openIndexes.includes(index) && (
                 <div className="mt-4 text-sm text-gray-300">
                   <p>
-                    <strong>Duration:</strong> {exp.duration} · <strong>{exp.location}</strong>
+                    <strong>Duration:</strong> {exp.period} · <strong>{exp.location}</strong>
                   </p>
-                  <p className="mt-2">{exp.description}</p>
+                  <ul className="mt-3 space-y-2 list-disc list-inside">
+                    {exp.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </div>

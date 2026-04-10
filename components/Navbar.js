@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import portfolio from '@/data/portfolio';
 
 const Navbar = () => {
+  const { personal, navigation } = portfolio;
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -15,20 +17,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo / Brand */}
         <div className="text-white text-2xl font-semibold tracking-wide">
-          <Link href="/">Dzaki Amri Zaidaan</Link>
+          <Link href="/">{personal.name}</Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          <Link href="#about" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            About
-          </Link>
-          <Link href="#projects" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            Projects
-          </Link>
-          <Link href="#contact" className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            Contact
-          </Link>
+          {navigation.map((item) => (
+            <Link key={item.href} href={item.href} className="text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         {/* Mobile Menu Toggle Button */}
@@ -47,15 +45,11 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-gray-900 text-white p-4 space-y-4 transform transition-all duration-300 ease-in-out">
-          <Link href="#about" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            About
-          </Link>
-          <Link href="#projects" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            Projects
-          </Link>
-          <Link href="#contact" className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
-            Contact
-          </Link>
+          {navigation.map((item) => (
+            <Link key={item.href} href={item.href} className="block text-gray-300 hover:text-white transition-all duration-300 ease-in-out">
+              {item.label}
+            </Link>
+          ))}
         </div>
       )}
     </nav>

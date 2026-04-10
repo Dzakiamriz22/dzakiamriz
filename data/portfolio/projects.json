@@ -1,0 +1,48 @@
+[
+  {
+    "title": "EatWise",
+    "category": "Android Application",
+    "description": "Built Android app features including UI, activity flows, and API integration to improve daily health tracking.",
+    "link": "https://github.com/Dzakiamriz22/EatWise",
+    "technologies": [{ "src": "/tech-icons/kotlin.svg", "alt": "Kotlin" }]
+  },
+  {
+    "title": "Robusta Kendal Website",
+    "category": "Web Platform",
+    "description": "Developed backend services for product management and administrative features to keep operations smooth and consistent.",
+    "link": "",
+    "technologies": [
+      { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },
+      { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
+    ]
+  },
+  {
+    "title": "Arsip DPPPA Kota Semarang",
+    "category": "Web Application",
+    "description": "Built a web-based document archive with CRUD workflows for faster, more organized file management.",
+    "link": "",
+    "technologies": [
+      { "src": "/tech-icons/laravel.svg", "alt": "Laravel" },
+      { "src": "/tech-icons/php.svg", "alt": "PHP" },
+      { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
+    ]
+  },
+  {
+    "title": "Glucosense",
+    "category": "Machine Learning Project",
+    "description": "Developed machine learning models to predict diabetes risk and deliver practical, actionable health insights.",
+    "link": "",
+    "technologies": [{ "src": "/tech-icons/python.svg", "alt": "Python" }]
+  },
+  {
+    "title": "PermataKu",
+    "category": "Web Platform",
+    "description": "Developed a platform to manage student data and tuition payments, streamlining educational administration.",
+    "link": "",
+    "technologies": [
+      { "src": "/tech-icons/react.svg", "alt": "React" },
+      { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },
+      { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "company": "BP UBIKAR Universitas Diponegoro",
+    "role": "Application Development Assistant",
+    "period": "Jan 2026 - Mar 2026",
+    "location": "Semarang, Indonesia",
+    "highlights": [
+      "Assisted in developing a digital system to manage student records and tuition payments.",
+      "Transformed manual workflows into structured, accessible digital processes.",
+      "Supported testing, documentation, and iterative improvements to maintain reliability."
+    ]
+  },
+  {
+    "company": "Baskoro Tech (Project-based Development Team)",
+    "role": "Web Developer",
+    "period": "Jun 2025 - Mar 2026",
+    "location": "Semarang, Indonesia",
+    "highlights": [
+      "Contributed to responsive web applications aligned with client requirements.",
+      "Implemented dynamic features to improve usability and user flow.",
+      "Performed maintenance and optimization to keep systems reliable and fast."
+    ]
+  },
+  {
+    "company": "MSIB Batch 7 (Bangkit Academy)",
+    "role": "Mobile Development",
+    "period": "Oct 2024 - Dec 2024",
+    "location": "Semarang, Indonesia",
+    "logo": "/img/bangkit.jpg",
+    "highlights": [
+      "Developed core Android app features, including activity flows, UI screens, and API integration.",
+      "Collaborated in team projects to build functional, user-focused mobile applications."
+    ]
+  },
+  {
+    "company": "PT Campus Data Media",
+    "role": "Software Developer Intern",
+    "period": "Jun 2024 - Aug 2024",
+    "location": "Semarang, Indonesia",
+    "logo": "/img/CDM.png",
+    "highlights": [
+      "Implemented frontend and backend features based on project requirements.",
+      "Collaborated with team members to troubleshoot and improve system performance.",
+      "Supported testing and iterative development to deliver stable releases."
+    ]
+  }
+]

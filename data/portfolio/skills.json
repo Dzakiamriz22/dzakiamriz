@@ -1,0 +1,14 @@
+{
+  "programmingLanguages": ["PHP", "JavaScript", "TypeScript", "Python"],
+  "frameworksAndTools": [
+    "Laravel",
+    "Node.js",
+    "React.js",
+    "Next.js",
+    "Tailwind CSS",
+    "MySQL",
+    "RESTful API Development"
+  ],
+  "other": ["Kotlin (Android)", "Git", "Manual Testing"],
+  "softSkills": ["Teamwork", "Adaptability", "Initiative"]
+}

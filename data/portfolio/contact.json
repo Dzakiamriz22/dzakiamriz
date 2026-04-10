@@ -1,0 +1,30 @@
+{
+  "title": "Contact",
+  "subtitle": "I am open to internships, freelance collaborations, and full-time opportunities. Let us build something useful together.",
+  "platforms": [
+    {
+      "name": "WhatsApp",
+      "href": "https://wa.me/62895361078490",
+      "iconSrc": "/icons/whatsapp.svg",
+      "iconAlt": "WhatsApp"
+    },
+    {
+      "name": "Email",
+      "href": "mailto:dzakiamriz12@gmail.com",
+      "iconSrc": "/icons/email.svg",
+      "iconAlt": "Email"
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/dzakiamriz",
+      "iconSrc": "/icons/linkedin.svg",
+      "iconAlt": "LinkedIn"
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/dzakiamriz22",
+      "iconSrc": "/icons/github.svg",
+      "iconAlt": "GitHub"
+    }
+  ]
+}
