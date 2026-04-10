@@ -3,10 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import portfolio from "@/data/portfolio";
+import { useLanguage } from "@/components/LanguageProvider";
+import { trackEvent } from "@/lib/analytics";
 
 const Hero = () => {
   const { personal } = portfolio;
+  const { t } = useLanguage();
   const [cursor, setCursor] = useState({ x: 50, y: 50, active: false });
+  const [photoMotion, setPhotoMotion] = useState({ rotateX: 0, rotateY: 0, active: false });
 
   const handleMouseMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -18,6 +22,20 @@ const Hero = () => {
 
   const handleMouseLeave = () => {
     setCursor((prev) => ({ ...prev, active: false }));
+  };
+
+  const handlePhotoMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 14;
+    const rotateX = (0.5 - py) * 14;
+
+    setPhotoMotion({ rotateX, rotateY, active: true });
+  };
+
+  const handlePhotoLeave = () => {
+    setPhotoMotion({ rotateX: 0, rotateY: 0, active: false });
   };
 
   return (
@@ -53,9 +71,9 @@ const Hero = () => {
             </div>
 
             <div className="border-l-4 border-[var(--color-primary)] pl-6">
-              <h2 className="text-2xl font-black tracking-wide mb-4">{personal.headline}</h2>
+              <h2 className="text-2xl font-black tracking-wide mb-4">{t("hero.headline")}</h2>
               <p className="text-[var(--color-text-muted)] text-lg leading-relaxed">
-                {personal.summary}
+                {t("hero.summary")}
               </p>
             </div>
 
@@ -64,23 +82,34 @@ const Hero = () => {
                 href="/cv.pdf"
                 download="Dzaki-Amri-Zaidaan-CV.pdf"
                 className="bg-[var(--color-primary)] text-white px-8 py-4 font-black text-sm tracking-wide uppercase hover:bg-[var(--color-secondary)] transition border-2 border-[var(--color-primary)]"
+                onClick={() => trackEvent("download_cv_click")}
               >
-                Download Resume
+                {t("hero.download")}
               </a>
               <a
                 href="#contact"
                 className="border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-8 py-4 font-black text-sm tracking-wide uppercase hover:bg-[var(--color-primary)] hover:text-white transition"
+                onClick={() => trackEvent("hero_contact_click")}
               >
-                Contact Me
+                {t("hero.contact")}
               </a>
             </div>
           </div>
 
           {/* Right side - Image */}
           <div className="flex justify-center md:justify-end">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-[var(--color-primary)]">
+            <div
+              className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-[var(--color-primary)] hero-avatar"
+              onMouseMove={handlePhotoMove}
+              onMouseLeave={handlePhotoLeave}
+              style={{
+                transform: `perspective(900px) rotateX(${photoMotion.rotateX}deg) rotateY(${photoMotion.rotateY}deg) scale(${photoMotion.active ? 1.02 : 1})`,
+                transition: photoMotion.active ? 'transform 120ms linear' : 'transform 260ms ease',
+              }}
+            >
               {/* Inner border accent */}
               <div className="absolute inset-0 border-2 border-[var(--color-secondary)] m-2"></div>
+              <div className="absolute -inset-3 border border-[var(--color-accent)]/50 pointer-events-none hero-avatar-ring"></div>
               
               <Image
                 src={personal.profileImage}

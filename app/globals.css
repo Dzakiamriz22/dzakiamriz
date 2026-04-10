@@ -99,6 +99,82 @@ a:hover {
   animation: fadeUp 0.5s ease forwards;
 }
 
+.hero-avatar {
+  will-change: transform;
+}
+
+.hero-avatar-ring {
+  animation: avatarPulse 2.2s ease-in-out infinite;
+}
+
+.hero-chip {
+  position: absolute;
+  z-index: 20;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-border);
+  background: rgba(10, 10, 10, 0.9);
+  color: var(--color-accent);
+  padding: 8px 10px;
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.hero-chip:hover {
+  transform: scale(1.06) translateY(-2px);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.hero-chip-a {
+  top: -12px;
+  left: -28px;
+  animation: chipFloatA 3.2s ease-in-out infinite;
+}
+
+.hero-chip-b {
+  right: -36px;
+  top: 30%;
+  animation: chipFloatB 3.8s ease-in-out infinite;
+}
+
+.hero-chip-c {
+  left: -16px;
+  bottom: -14px;
+  animation: chipFloatC 3.4s ease-in-out infinite;
+}
+
+@keyframes chipFloatA {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes chipFloatB {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+@keyframes chipFloatC {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes avatarPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+}
+
 @keyframes fadeUp {
   to {
     opacity: 1;
@@ -109,19 +185,29 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   .scanline::after,
   .fade-in-up,
-  .brutal-card {
+  .brutal-card,
+  .hero-avatar-ring,
+  .hero-chip-a,
+  .hero-chip-b,
+  .hero-chip-c {
     animation: none;
     transition: none;
     transform: none;
   }
 }
 
+@media (max-width: 768px) {
+  .hero-chip {
+    display: none;
+  }
+}
+
 .tech-icon {
-  filter: grayscale(100%);
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: saturate(1.05) contrast(1.02);
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .tech-icon:hover {
-  filter: grayscale(0%);
-  transform: scale(1.1);
+  filter: saturate(1.2) brightness(1.06) drop-shadow(0 0 10px rgba(20, 136, 204, 0.55));
+  transform: translateY(-3px) scale(1.06);
 }

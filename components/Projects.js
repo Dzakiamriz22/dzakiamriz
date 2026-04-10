@@ -3,22 +3,29 @@
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import portfolio from '@/data/portfolio';
+import { useLanguage } from '@/components/LanguageProvider';
+import { trackEvent } from '@/lib/analytics';
 
 const ITEMS_PER_PAGE = 6;
 
 const Projects = () => {
   const { projects } = portfolio;
+  const { t } = useLanguage();
   const categories = useMemo(
-    () => ['All', ...new Set(projects.map((project) => project.category))],
-    [projects]
+    () => [t('projects.all'), ...new Set(projects.map((project) => project.category))],
+    [projects, t]
   );
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState(t('projects.all'));
   const [currentPage, setCurrentPage] = useState(1);
 
   const visibleProjects = useMemo(() => {
-    if (activeCategory === 'All') return projects;
+    if (activeCategory === t('projects.all')) return projects;
     return projects.filter((project) => project.category === activeCategory);
-  }, [activeCategory, projects]);
+  }, [activeCategory, projects, t]);
+
+  useEffect(() => {
+    setActiveCategory(t('projects.all'));
+  }, [t]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -36,9 +43,9 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="mb-16">
-          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">Selected Work</p>
-          <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-4">Projects</h2>
-          <p className="text-[var(--color-text-muted)] text-lg">A curated set of practical products and implementation work.</p>
+          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">{t('projects.eyebrow')}</p>
+          <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-4">{t('projects.title')}</h2>
+          <p className="text-[var(--color-text-muted)] text-lg">{t('projects.subtitle')}</p>
         </div>
 
         <div className="flex flex-wrap gap-3 mb-10">
@@ -48,7 +55,10 @@ const Projects = () => {
               <button
                 key={category}
                 type="button"
-                onClick={() => setActiveCategory(category)}
+                onClick={() => {
+                  setActiveCategory(category);
+                  trackEvent('project_filter_click', { category });
+                }}
                 className={`px-4 py-2 border-2 text-xs font-black uppercase tracking-wide transition ${
                   isActive
                     ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
@@ -109,12 +119,13 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-6 py-3 font-black text-sm uppercase hover:bg-[var(--color-primary)] hover:text-white transition"
                     aria-label={`View details of ${project.title}`}
+                    onClick={() => trackEvent('project_repository_click', { project: project.title, link: project.link })}
                   >
-                    Open Repository ↗
+                    {t('projects.openRepository')} ↗
                   </a>
                 ) : (
                   <span className="border-2 border-[var(--color-border)] text-[var(--color-text-muted)] px-6 py-3 font-bold text-sm uppercase">
-                    Private Project
+                    {t('projects.privateProject')}
                   </span>
                 )}
               </div>
@@ -125,16 +136,19 @@ const Projects = () => {
         {totalPages > 1 && (
           <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p className="text-sm text-[var(--color-text-muted)] uppercase tracking-wide">
-              Page {currentPage} of {totalPages}
+              {t('projects.page')} {currentPage} {t('projects.of')} {totalPages}
             </p>
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.max(1, prev - 1));
+                  trackEvent('project_pagination_click', { direction: 'prev' });
+                }}
                 disabled={currentPage === 1}
                 className="px-4 py-2 border-2 border-[var(--color-border)] text-[var(--color-text-muted)] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition text-xs font-black uppercase"
               >
-                Prev
+                {t('projects.prev')}
               </button>
 
               {Array.from({ length: totalPages }, (_, index) => {
@@ -145,7 +159,10 @@ const Projects = () => {
                   <button
                     key={page}
                     type="button"
-                    onClick={() => setCurrentPage(page)}
+                    onClick={() => {
+                      setCurrentPage(page);
+                      trackEvent('project_pagination_click', { page });
+                    }}
                     className={`w-10 h-10 border-2 text-xs font-black transition ${
                       isActive
                         ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
@@ -160,11 +177,14 @@ const Projects = () => {
 
               <button
                 type="button"
-                onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+                  trackEvent('project_pagination_click', { direction: 'next' });
+                }}
                 disabled={currentPage === totalPages}
                 className="px-4 py-2 border-2 border-[var(--color-border)] text-[var(--color-text-muted)] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition text-xs font-black uppercase"
               >
-                Next
+                {t('projects.next')}
               </button>
             </div>
           </div>

@@ -5,6 +5,7 @@ import Projects from '../components/Projects';
 import Footer from '../components/Footer';
 import Contact from '@/components/Contact';
 import Experience from '@/components/Experience';
+import GitHubOverview from '@/components/GitHubOverview';
 
 const Home = () => {
   return (
@@ -12,9 +13,10 @@ const Home = () => {
       <Navbar />
       <Hero />
       <About />
-      <Experience/>
+      <Experience />
       <Projects />
-      <Contact/>
+      <GitHubOverview />
+      <Contact />
       <Footer />
     </div>
   );

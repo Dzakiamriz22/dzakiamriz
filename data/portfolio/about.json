@@ -8,7 +8,6 @@
     { "src": "/tech-icons/laravel.svg", "alt": "Laravel" },
     { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },
     { "src": "/tech-icons/react.svg", "alt": "React" },
-    { "src": "/tech-icons/nextjs.svg", "alt": "Next.js" },
     { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
   ]
 }

@@ -1,13 +1,17 @@
+"use client";
+
 import Image from 'next/image';
 import portfolio from '@/data/portfolio';
+import { useLanguage } from '@/components/LanguageProvider';
 
 const About = () => {
   const { about, education, skills } = portfolio;
+  const { t } = useLanguage();
   const skillGroups = [
-    { title: 'Programming Languages', items: skills.programmingLanguages },
-    { title: 'Frameworks & Tools', items: skills.frameworksAndTools },
-    { title: 'Other', items: skills.other },
-    { title: 'Soft Skills', items: skills.softSkills },
+    { title: t('about.programmingLanguages'), items: skills.programmingLanguages },
+    { title: t('about.frameworksAndTools'), items: skills.frameworksAndTools },
+    { title: t('about.other'), items: skills.other },
+    { title: t('about.softSkills'), items: skills.softSkills },
   ];
 
   return (
@@ -15,18 +19,18 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="mb-16">
-          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">PROFILE</p>
-          <h2 className="text-5xl md:text-6xl font-black tracking-tight">{about.title}</h2>
+          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">{t('about.eyebrow')}</p>
+          <h2 className="text-5xl md:text-6xl font-black tracking-tight">{t('about.title')}</h2>
         </div>
 
         {/* Intro */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div className="md:col-span-2 border-l-4 border-[var(--color-primary)] pl-8">
             <p className="text-lg text-[var(--color-text-muted)] leading-relaxed mb-4">
-              {about.intro}
+              {t('about.intro')}
             </p>
             <p className="text-lg text-[var(--color-text-muted)] leading-relaxed">
-              {about.focus}
+              {t('about.focus')}
             </p>
           </div>
         </div>
@@ -35,7 +39,7 @@ const About = () => {
         <div className="mb-16">
           <h3 className="text-3xl font-black uppercase tracking-tight mb-8 flex items-center gap-4">
             <span className="text-[var(--color-secondary)]">━━</span>
-            Education
+            {t('about.education')}
           </h3>
           <div className="grid grid-cols-1 gap-6">
             {education.map((item, index) => (
@@ -43,7 +47,7 @@ const About = () => {
                 <h4 className="text-2xl font-black text-white mb-2">{item.institution}</h4>
                 <p className="text-[var(--color-secondary)] font-bold text-lg mb-2">{item.degree}</p>
                 <p className="text-[var(--color-text-muted)] mb-4">{item.period} · {item.location}</p>
-                <p className="text-[var(--color-primary)] font-bold">GPA: {item.gpa}</p>
+                <p className="text-[var(--color-primary)] font-bold">{t('about.gpa')}: {item.gpa}</p>
               </article>
             ))}
           </div>
@@ -53,7 +57,7 @@ const About = () => {
         <div className="mb-16">
           <h3 className="text-3xl font-black uppercase tracking-tight mb-8 flex items-center gap-4">
             <span className="text-[var(--color-secondary)]">━━</span>
-            Skills
+            {t('about.skills')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {skillGroups.map((group, index) => (
@@ -75,7 +79,7 @@ const About = () => {
         <div>
           <h3 className="text-3xl font-black uppercase tracking-tight text-center mb-12 flex items-center justify-center gap-4">
             <span className="text-[var(--color-secondary)]">━━</span>
-            {about.techStackTitle}
+            {t('about.techStack')}
             <span className="text-[var(--color-secondary)]">━━</span>
           </h3>
           <div className="flex justify-center items-center flex-wrap gap-8">

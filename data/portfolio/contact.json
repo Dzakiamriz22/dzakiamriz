@@ -25,6 +25,17 @@
       "href": "https://github.com/dzakiamriz22",
       "iconSrc": "/icons/github.svg",
       "iconAlt": "GitHub"
+    },
+    {
+      "name": "Spotify",
+      "href": "https://open.spotify.com/",
+      "iconSrc": "/icons/spotify.svg",
+      "iconAlt": "Spotify"
     }
-  ]
+  ],
+  "spotify": {
+    "title": "Focus Playlist",
+    "profileUrl": "https://open.spotify.com/user/31vmea4gl5llfqmsusppnmumhrrm?si=38a3f0b295e341cd",
+    "playlistEmbedUrl": "https://open.spotify.com/embed/playlist/5jWRkYO8yVZW0Nhac3c4bC?utm_source=generator"
+  }
 }

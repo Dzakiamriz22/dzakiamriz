@@ -4,18 +4,52 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import portfolio from '@/data/portfolio';
+import { useLanguage } from '@/components/LanguageProvider';
+import { trackEvent } from '@/lib/analytics';
 
 const Navbar = () => {
   const { navigation } = portfolio;
+  const { lang, t, toggleLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
+  const [logoMotion, setLogoMotion] = useState({ x: 0, y: 0, rotate: 0, active: false });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogoMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+    const x = (px - 0.5) * 12;
+    const y = (py - 0.5) * 12;
+    const rotate = (px - 0.5) * 14;
+
+    setLogoMotion({ x, y, rotate, active: true });
+  };
+
+  const resetLogoMove = () => {
+    setLogoMotion({ x: 0, y: 0, rotate: 0, active: false });
+  };
+
+  const getNavLabel = (href) => {
+    const id = href.replace('#', '').trim();
+    const map = {
+      about: 'navbar.about',
+      experience: 'navbar.experience',
+      projects: 'navbar.projects',
+      contact: 'navbar.contact',
+    };
+    return t(map[id] || 'navbar.projects');
+  };
+
   useEffect(() => {
+    const sectionIds = navigation
+      .map((item) => item.href.replace('#', '').trim())
+      .filter(Boolean);
+
     const onScroll = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (maxScroll <= 0) {
@@ -23,53 +57,32 @@ const Navbar = () => {
       } else {
         setScrollProgress((window.scrollY / maxScroll) * 100);
       }
+
+      const markerY = window.scrollY + 130;
+      let current = sectionIds[0] || '';
+
+      for (const id of sectionIds) {
+        const element = document.getElementById(id);
+        if (!element) continue;
+        if (element.offsetTop <= markerY) {
+          current = id;
+        }
+      }
+
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (isAtBottom && sectionIds.length) {
+        current = sectionIds[sectionIds.length - 1];
+      }
+
+      setActiveSection(current);
     };
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sectionIds = navigation
-      .map((item) => item.href.replace('#', '').trim())
-      .filter(Boolean);
-
-    const sections = sectionIds
-      .map((id) => ({ id, element: document.getElementById(id) }))
-      .filter((entry) => entry.element);
-
-    if (!sections.length) {
-      return;
-    }
-
-    setActiveSection((prev) => prev || sections[0].id);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (!visibleEntries.length) {
-          return;
-        }
-
-        const activeId = visibleEntries[0].target.id;
-        setActiveSection(activeId);
-      },
-      {
-        root: null,
-        rootMargin: '-25% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.7],
-      }
-    );
-
-    sections.forEach((entry) => observer.observe(entry.element));
-
+    window.addEventListener('resize', onScroll);
     return () => {
-      sections.forEach((entry) => observer.unobserve(entry.element));
-      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, [navigation]);
 
@@ -77,14 +90,26 @@ const Navbar = () => {
     <nav className="bg-[var(--color-bg)] border-b-2 border-[var(--color-border)] text-white px-6 fixed top-0 w-full z-20">
       <div className="max-w-7xl mx-auto flex justify-between items-center h-20">
         {/* Logo / Brand */}
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
-          <div className="w-12 h-12 relative">
+        <Link
+          href="/"
+          className="flex items-center gap-3 transition"
+          onMouseMove={handleLogoMove}
+          onMouseLeave={resetLogoMove}
+        >
+          <div
+            className={`w-12 h-12 relative rounded-sm transition-transform duration-200 ${
+              logoMotion.active ? 'drop-shadow-[0_0_18px_rgba(0,212,170,0.35)]' : ''
+            }`}
+            style={{
+              transform: `translate(${logoMotion.x}px, ${logoMotion.y}px) rotate(${logoMotion.rotate}deg) scale(${logoMotion.active ? 1.08 : 1})`,
+            }}
+          >
             <Image src="/img/logo.png" alt="DAZ Logo" fill style={{ objectFit: 'contain' }} />
           </div>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-12">
+        <div className="hidden md:flex gap-8 items-center">
           {navigation.map((item) => {
             const sectionId = item.href.replace('#', '').trim();
             const isActive = activeSection === sectionId;
@@ -98,11 +123,22 @@ const Navbar = () => {
                   ? 'text-[var(--color-accent)] border-[var(--color-accent)]'
                   : 'text-[var(--color-text-muted)] border-transparent hover:text-[var(--color-accent)]'
               }`}
+              onClick={() => trackEvent('nav_click', { target: sectionId })}
             >
-              {item.label}
+              {getNavLabel(item.href)}
             </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={() => {
+              toggleLanguage();
+              trackEvent('language_toggle', { from: lang, to: lang === 'en' ? 'id' : 'en' });
+            }}
+            className="px-3 py-2 border-2 border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] text-xs font-black uppercase transition"
+          >
+            {t('navbar.language')}
+          </button>
         </div>
 
         {/* Mobile Menu Toggle Button */}
@@ -134,12 +170,25 @@ const Navbar = () => {
                   ? 'text-[var(--color-accent)]'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-accent)]'
               }`}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                trackEvent('nav_click', { target: sectionId });
+              }}
             >
-              {item.label}
+              {getNavLabel(item.href)}
             </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={() => {
+              toggleLanguage();
+              trackEvent('language_toggle', { from: lang, to: lang === 'en' ? 'id' : 'en', mobile: true });
+            }}
+            className="block w-full text-left px-0 py-1 text-sm font-bold tracking-wide text-[var(--color-text-muted)] hover:text-[var(--color-accent)] uppercase transition"
+          >
+            {t('navbar.language')}
+          </button>
         </div>
       )}
 

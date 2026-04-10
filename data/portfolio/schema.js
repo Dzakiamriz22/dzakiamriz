@@ -82,6 +82,11 @@ export const contactSchema = z.object({
     iconSrc: z.string().min(1),
     iconAlt: z.string().min(1),
   }).strict()).min(1),
+  spotify: z.object({
+    title: z.string().min(1),
+    profileUrl: z.string().url(),
+    playlistEmbedUrl: z.string().url(),
+  }).strict().optional(),
 }).strict();
 
 export const portfolioSchema = z.object({

@@ -4,6 +4,7 @@
     "role": "Application Development Assistant",
     "period": "Jan 2026 - Mar 2026",
     "location": "Semarang, Indonesia",
+    "logo": "/img/logoUbikar.png",
     "highlights": [
       "Assisted in developing a digital system to manage student records and tuition payments.",
       "Transformed manual workflows into structured, accessible digital processes.",
@@ -15,6 +16,7 @@
     "role": "Web Developer",
     "period": "Jun 2025 - Mar 2026",
     "location": "Semarang, Indonesia",
+    "logo": "/img/baskoroTech.png",
     "highlights": [
       "Contributed to responsive web applications aligned with client requirements.",
       "Implemented dynamic features to improve usability and user flow.",
