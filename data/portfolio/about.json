@@ -9,9 +9,6 @@
     { "src": "/tech-icons/nodejs.svg", "alt": "Node.js" },
     { "src": "/tech-icons/react.svg", "alt": "React" },
     { "src": "/tech-icons/nextjs.svg", "alt": "Next.js" },
-    { "src": "/tech-icons/tailwindcss.svg", "alt": "Tailwind CSS" },
-    { "src": "/tech-icons/sql.svg", "alt": "MySQL" },
-    { "src": "/tech-icons/kotlin.svg", "alt": "Kotlin" },
-    { "src": "/tech-icons/python.svg", "alt": "Python" }
+    { "src": "/tech-icons/sql.svg", "alt": "MySQL" }
   ]
 }

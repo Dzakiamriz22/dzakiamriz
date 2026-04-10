@@ -1,12 +1,5 @@
 [
   {
-    "title": "EatWise",
-    "category": "Android Application",
-    "description": "Built Android app features including UI, activity flows, and API integration to improve daily health tracking.",
-    "link": "https://github.com/Dzakiamriz22/EatWise",
-    "technologies": [{ "src": "/tech-icons/kotlin.svg", "alt": "Kotlin" }]
-  },
-  {
     "title": "Robusta Kendal Website",
     "category": "Web Platform",
     "description": "Developed backend services for product management and administrative features to keep operations smooth and consistent.",

@@ -2,29 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #1488cc;
+  --color-secondary: #00a884;
+  --color-accent: #00d4aa;
+  --color-bg: #0a0a0a;
+  --color-bg-secondary: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #b3b3b3;
+  --color-border: #333333;
+}
+
 @layer base {
   html {
     color-scheme: dark;
   }
 
   body {
-    background-color: #121212;
-    color: #eaeaea;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 }
 
 body {
-  background-color: #121212;
-  color: #eaeaea;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 a {
-  color: #8f8f8f;
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 a:hover {
-  color: #58a6ff;
+  color: var(--color-accent);
 }
 
 .tech-icon {

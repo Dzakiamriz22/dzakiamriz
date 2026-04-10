@@ -5,42 +5,62 @@ const Hero = () => {
   const { personal } = portfolio;
 
   return (
-    <section className="relative flex items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-black min-h-screen text-white overflow-hidden px-6">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 blur-2xl opacity-20 -z-10 animate-gradient-slow"></div>
+    <section className="relative bg-[var(--color-bg)] text-white overflow-hidden pt-24">
+      {/* Background geometric elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-primary)] opacity-5 rounded-full blur-3xl -mr-48 -mt-48"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--color-secondary)] opacity-5 rounded-full blur-3xl -ml-48 -mb-48"></div>
 
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="text-center md:text-left space-y-6 md:space-y-8">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-            {personal.heroTitlePrefix}{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">{personal.name}</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300 font-light max-w-xl mx-auto md:mx-0 opacity-90">
-            {personal.headline}
-          </p>
-          <p className="text-md text-gray-300 font-light max-w-xl mx-auto md:mx-0 opacity-80">
-            {personal.summary}
-          </p>
+      <div className="max-w-7xl mx-auto px-6 py-32 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Left side - Text */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase">Welcome</p>
+              <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
+                {personal.heroTitlePrefix}
+                <br />
+                <span className="text-[var(--color-accent)]">{personal.name}</span>
+              </h1>
+            </div>
 
-          <div className="pt-2">
-            <a
-              href="/cv.pdf"
-              download="Dzaki-Amri-Zaidaan-CV.pdf"
-              className="inline-flex items-center justify-center rounded-full bg-white text-gray-900 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-gray-100"
-            >
-              Download CV (PDF)
-            </a>
+            <div className="border-l-4 border-[var(--color-primary)] pl-6">
+              <h2 className="text-2xl font-black tracking-wide mb-4">{personal.headline}</h2>
+              <p className="text-[var(--color-text-muted)] text-lg leading-relaxed">
+                {personal.summary}
+              </p>
+            </div>
+
+            <div className="flex gap-4 pt-4">
+              <a
+                href="/cv.pdf"
+                download="Dzaki-Amri-Zaidaan-CV.pdf"
+                className="bg-[var(--color-primary)] text-white px-8 py-4 font-black text-sm tracking-wide uppercase hover:bg-[var(--color-secondary)] transition border-2 border-[var(--color-primary)]"
+              >
+                Download CV
+              </a>
+              <a
+                href="#contact"
+                className="border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-8 py-4 font-black text-sm tracking-wide uppercase hover:bg-[var(--color-primary)] hover:text-white transition"
+              >
+                Get in Touch
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div className="flex justify-center md:justify-end relative mt-8 md:mt-0">
-          <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-xl border-4 border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-110 hover:shadow-2xl hover:border-blue-400">
-            <Image
-              src={personal.profileImage}
-              alt={personal.profileImageAlt}
-              fill
-              style={{ objectFit: "cover" }}
-              className="rounded-full"
-            />
+          {/* Right side - Image */}
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-[var(--color-primary)]">
+              {/* Inner border accent */}
+              <div className="absolute inset-0 border-2 border-[var(--color-secondary)] m-2"></div>
+              
+              <Image
+                src={personal.profileImage}
+                alt={personal.profileImageAlt}
+                fill
+                style={{ objectFit: "cover" }}
+                className="relative z-10"
+              />
+            </div>
           </div>
         </div>
       </div>

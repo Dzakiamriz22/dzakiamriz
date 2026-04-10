@@ -5,57 +5,67 @@ const Projects = () => {
   const { projects } = portfolio;
 
   return (
-    <section id="projects" className="py-16 bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-semibold text-gray-100 mb-12">My Projects</h2>
+    <section id="projects" className="py-20 bg-[var(--color-bg)] text-white">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Title */}
+        <div className="mb-16">
+          <p className="text-[var(--color-primary)] font-black text-sm tracking-widest uppercase mb-2">PORTFOLIO</p>
+          <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-4">My Projects</h2>
+          <p className="text-[var(--color-text-muted)] text-lg">Selected works showcasing my expertise</p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-6 rounded-xl flex flex-col justify-between transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl"
-              style={{ minHeight: '380px' }}
+              className="border-2 border-[var(--color-border)] p-8 flex flex-col justify-between hover:border-[var(--color-primary)] hover:bg-[var(--color-bg-secondary)] transition group"
             >
               {/* Project Title */}
-              <h3 className="text-2xl font-semibold text-gray-100 mb-4 truncate">{project.title}</h3>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-[var(--color-accent)] transition">
+                  {project.title}
+                </h3>
 
-              {/* Project Description */}
-              <p className="text-gray-300 text-sm mb-2 flex-grow">{project.description}</p>
+                {/* Project Description */}
+                <p className="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+                  {project.description}
+                </p>
 
-              {/* Category Badge */}
-              <span className="block text-xs font-medium text-gray-700 bg-gray-500 px-3 py-1 rounded-full mx-auto mt-2 mb-4">
-                {project.category}
-              </span>
+                {/* Category Badge */}
+                <span className="inline-block border border-[var(--color-secondary)] text-[var(--color-secondary)] px-4 py-2 font-bold text-xs uppercase mb-6">
+                  {project.category}
+                </span>
+              </div>
 
               {/* Technologies */}
-              <div className="flex justify-center gap-3 mb-6">
+              <div className="flex gap-4 mb-6 flex-wrap">
                 {project.technologies.map((tech, techIndex) => (
-                  <div key={techIndex} className="flex items-center justify-center">
+                  <div key={techIndex} className="relative w-10 h-10 group/tech">
                     <Image
                       src={tech.src}
                       alt={tech.alt}
-                      width={30}
-                      height={30}
-                      className="hover:scale-110 transition-transform duration-300"
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      className="group-hover/tech:scale-125 transition"
                     />
                   </div>
                 ))}
               </div>
 
               {/* View Project Button */}
-              <div className="flex justify-center">
+              <div className="flex justify-start">
                 {project.link ? (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 bg-indigo-600 text-white text-sm font-medium rounded-full transition-all duration-300 ease-in-out hover:bg-indigo-500"
+                    className="border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-6 py-3 font-black text-sm uppercase hover:bg-[var(--color-primary)] hover:text-white transition"
                     aria-label={`View details of ${project.title}`}
                   >
-                    View Project
+                    View Project ↗
                   </a>
                 ) : (
-                  <span className="px-8 py-3 bg-gray-700 text-gray-300 text-sm font-medium rounded-full cursor-not-allowed">
+                  <span className="border-2 border-[var(--color-border)] text-[var(--color-text-muted)] px-6 py-3 font-bold text-sm uppercase">
                     Private Project
                   </span>
                 )}
