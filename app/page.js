@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Contact from '@/components/Contact';
 import Experience from '@/components/Experience';
 import GitHubOverview from '@/components/GitHubOverview';
+import BlogTeaser from '@/components/BlogTeaser';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Projects />
       <GitHubOverview />
       <Contact />
+      <BlogTeaser />
       <Footer />
     </div>
   );

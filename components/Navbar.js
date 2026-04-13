@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import portfolio from '@/data/portfolio';
 import { useLanguage } from '@/components/LanguageProvider';
@@ -10,6 +11,7 @@ import { trackEvent } from '@/lib/analytics';
 const Navbar = () => {
   const { navigation } = portfolio;
   const { lang, t, toggleLanguage } = useLanguage();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
@@ -36,18 +38,34 @@ const Navbar = () => {
 
   const getNavLabel = (href) => {
     const id = href.replace('#', '').trim();
+    const route = href.replace(/^\//, '').trim();
     const map = {
       about: 'navbar.about',
       experience: 'navbar.experience',
       projects: 'navbar.projects',
       contact: 'navbar.contact',
     };
-    return t(map[id] || 'navbar.projects');
+    return t(map[id] || map[route] || 'navbar.projects');
+  };
+
+  const resolveNavHref = (href) => {
+    if (href.startsWith('#')) {
+      return pathname === '/' ? href : `/${href}`;
+    }
+
+    return href;
   };
 
   useEffect(() => {
+    if (pathname !== '/') {
+      setActiveSection('');
+      setScrollProgress(0);
+      return () => {};
+    }
+
     const sectionIds = navigation
       .map((item) => item.href.replace('#', '').trim())
+      .filter((id) => id && !id.startsWith('/'))
       .filter(Boolean);
 
     const onScroll = () => {
@@ -84,7 +102,7 @@ const Navbar = () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };
-  }, [navigation]);
+  }, [navigation, pathname]);
 
   return (
     <nav className="bg-[var(--color-bg)] border-b-2 border-[var(--color-border)] text-white px-6 fixed top-0 w-full z-20">
@@ -112,18 +130,20 @@ const Navbar = () => {
         <div className="hidden md:flex gap-8 items-center">
           {navigation.map((item) => {
             const sectionId = item.href.replace('#', '').trim();
-            const isActive = activeSection === sectionId;
+            const isSectionLink = item.href.startsWith('#');
+            const isActive = isSectionLink && activeSection === sectionId;
+            const resolvedHref = resolveNavHref(item.href);
 
             return (
             <Link 
               key={item.href} 
-              href={item.href} 
+              href={resolvedHref} 
               className={`text-sm font-bold tracking-wide transition uppercase border-b-2 pb-1 ${
                 isActive
                   ? 'text-[var(--color-accent)] border-[var(--color-accent)]'
                   : 'text-[var(--color-text-muted)] border-transparent hover:text-[var(--color-accent)]'
               }`}
-              onClick={() => trackEvent('nav_click', { target: sectionId })}
+              onClick={() => trackEvent('nav_click', { target: resolvedHref })}
             >
               {getNavLabel(item.href)}
             </Link>
@@ -159,12 +179,14 @@ const Navbar = () => {
         <div className="md:hidden bg-[var(--color-bg-secondary)] border-t-2 border-[var(--color-border)] text-white p-6 space-y-4 scanline">
           {navigation.map((item) => {
             const sectionId = item.href.replace('#', '').trim();
-            const isActive = activeSection === sectionId;
+            const isSectionLink = item.href.startsWith('#');
+            const isActive = isSectionLink && activeSection === sectionId;
+            const resolvedHref = resolveNavHref(item.href);
 
             return (
             <Link 
               key={item.href} 
-              href={item.href} 
+              href={resolvedHref} 
               className={`block text-sm font-bold tracking-wide transition uppercase ${
                 isActive
                   ? 'text-[var(--color-accent)]'
@@ -172,7 +194,7 @@ const Navbar = () => {
               }`}
               onClick={() => {
                 setIsOpen(false);
-                trackEvent('nav_click', { target: sectionId });
+                trackEvent('nav_click', { target: resolvedHref });
               }}
             >
               {getNavLabel(item.href)}
@@ -192,12 +214,14 @@ const Navbar = () => {
         </div>
       )}
 
-      <div className="h-1 bg-[var(--color-border)]">
-        <div
-          className="h-full bg-[var(--color-accent)] transition-[width] duration-150"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
+      {pathname === '/' ? (
+        <div className="h-1 bg-[var(--color-border)]">
+          <div
+            className="h-full bg-[var(--color-accent)] transition-[width] duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      ) : null}
     </nav>
   );
 };
