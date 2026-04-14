@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import portfolio from '@/data/portfolio';
 import { getBlogPostBySlug, getPublishedBlogPosts } from '@/lib/blog';
 
+export const dynamic = 'force-dynamic';
+
 function formatDate(value) {
   return new Intl.DateTimeFormat('en-GB', {
     day: '2-digit',

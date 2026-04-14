@@ -1,6 +1,8 @@
 import BlogIndex from '@/components/BlogIndex';
 import { getBlogIndexData } from '@/lib/blog';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Blog',
   description: 'Articles, notes, and build logs about software engineering and product delivery.',
