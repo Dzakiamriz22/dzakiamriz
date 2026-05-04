@@ -8,5 +8,7 @@
   "github": "https://github.com/dzakiamriz22",
   "headline": "Software Engineer with strengths in backend development and product implementation",
   "summary": "I focus on building maintainable systems, clear API flows, and practical features that solve real user needs through collaborative execution.",
-  "heroTitlePrefix": "Hi, I am"
+  "heroTitlePrefix": "Hi, I am",
+  "profileImage": "/img/profile.png",
+  "profileImageAlt": "Dzaki Amri Zaidaan profile photo"
 }

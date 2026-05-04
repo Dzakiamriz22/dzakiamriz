@@ -22,8 +22,8 @@ export const personalSchema = z.object({
   headline: z.string().min(1),
   summary: z.string().min(1),
   heroTitlePrefix: z.string().min(1),
-  profileImage: z.string().min(1).optional(),
-  profileImageAlt: z.string().min(1).optional(),
+  profileImage: z.string().min(1),
+  profileImageAlt: z.string().min(1),
 }).strict();
 
 export const navigationSchema = z.array(z.object({
