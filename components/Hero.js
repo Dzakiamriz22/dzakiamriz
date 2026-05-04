@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import portfolio from "@/data/portfolio";
 import { useLanguage } from "@/components/LanguageProvider";
 import { trackEvent } from "@/lib/analytics";
@@ -96,10 +95,10 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right side - Image */}
+          {/* Right side - Avatar Placeholder */}
           <div className="flex justify-center md:justify-end">
             <div
-              className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-[var(--color-primary)] hero-avatar"
+              className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-[var(--color-primary)] hero-avatar flex items-center justify-center bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)]"
               onMouseMove={handlePhotoMove}
               onMouseLeave={handlePhotoLeave}
               style={{
@@ -111,13 +110,11 @@ const Hero = () => {
               <div className="absolute inset-0 border-2 border-[var(--color-secondary)] m-2"></div>
               <div className="absolute -inset-3 border border-[var(--color-accent)]/50 pointer-events-none hero-avatar-ring"></div>
               
-              <Image
-                src={personal.profileImage}
-                alt={personal.profileImageAlt}
-                fill
-                style={{ objectFit: "cover" }}
-                className="relative z-10"
-              />
+              {/* Avatar with initials */}
+              <div className="relative z-10 text-center">
+                <div className="text-6xl font-black text-white tracking-tighter">DAZ</div>
+                <p className="text-sm text-white/80 mt-2 font-medium tracking-widest uppercase">{personal.name}</p>
+              </div>
             </div>
           </div>
         </div>
