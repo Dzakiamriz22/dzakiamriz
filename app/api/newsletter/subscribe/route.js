@@ -13,7 +13,7 @@ export async function POST(request) {
     const subscriber = await subscribeEmail(payload.email);
     const message = subscriber.isFirstSubscription
       ? 'Subscription successful. Please check your inbox for a confirmation email.'
-      : 'You are already subscribed. You will continue receiving blog updates.';
+      : 'You are already subscribed. You will continue receiving updates.';
 
     return NextResponse.json({
       ok: true,

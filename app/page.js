@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 import Contact from '@/components/Contact';
 import Experience from '@/components/Experience';
 import GitHubOverview from '@/components/GitHubOverview';
-import BlogTeaser from '@/components/BlogTeaser';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +19,6 @@ const Home = () => {
       <Projects />
       <GitHubOverview />
       <Contact />
-      <BlogTeaser />
       <Footer />
     </div>
   );
